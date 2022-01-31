@@ -32,6 +32,8 @@ public class MovePlayer : MonoBehaviour
         OSCHandler.Instance.SendMessageToClient("pd", "/unity/trigger", "ready");
         OSCHandler.Instance.SendMessageToClient("pd", "/unity/playseq", 1);
         OSCHandler.Instance.SendMessageToClient("pd", "/unity/walk", 0);
+        // OSCHandler.Instance.SendMessageToClient("pd", "/unity/victory", 0);
+        // OSCHandler.Instance.SendMessageToClient("pd", "/unity/failure", 0);
         //*************
 
         rb = GetComponent<Rigidbody>();
@@ -129,6 +131,7 @@ public class MovePlayer : MonoBehaviour
             else
             {
                 OSCHandler.Instance.SendMessageToClient("pd", "/unity/playseq", 0);
+                // OSCHandler.Instance.SendMessageToClient("pd", "/unity/victory", 1);
                 gameConditions.Victory();
             }
 
@@ -145,6 +148,7 @@ public class MovePlayer : MonoBehaviour
             transform.localPosition = new Vector3(0, 0.5f, 0);
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
+            // OSCHandler.Instance.SendMessageToClient("pd", "/unity/failure", 1);
             gameConditions.GameOver();
         }
     }
